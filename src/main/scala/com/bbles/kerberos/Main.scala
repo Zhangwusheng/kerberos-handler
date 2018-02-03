@@ -1,6 +1,6 @@
 package com.bbles.kerberos
 
-import java.io.File
+import java.io.{ByteArrayOutputStream, DataOutputStream, File}
 
 import com.bbles.kerberos.client.KerberosLogger
 import sun.security.krb5.Config
@@ -21,7 +21,8 @@ object Main extends KerberosLogger {
     val javaHome = System.getProperty("java.home")
     val javaBin = javaHome + File.separator + "bin" + File.separator + "java"
     val classpath = System.getProperty("java.class.path")
-    val builder = new ProcessBuilder(javaBin, "-Djava.security.krb5.kdc=localhost","-Djava.security.krb5.realm=localhost", "-cp", classpath, className,
+    val builder = new ProcessBuilder(javaBin, "-Djava.security.krb5.kdc=localhost",
+      "-Djava.security.krb5.realm=localhost", "-cp", classpath, className,
       "--principal=m.benalla",
       "--password=test", "--debug", "--cachename=krb5cc_ele")
     builder.redirectOutput(new File("output.out"))
@@ -29,6 +30,10 @@ object Main extends KerberosLogger {
     val process = builder.start
     debug("get result")
     process.waitFor()
-    return process.exitValue
+    val data = new ByteArrayOutputStream()
+    val out = new DataOutputStream(data)
+    out.writeChar('c')
+    data.flush()
+    return 1
   }
 }

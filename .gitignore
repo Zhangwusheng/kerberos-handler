@@ -101,8 +101,11 @@ classes/
 deploy/
 javadoc/
 target/
-*.cc5(For kerberos cache)
-*.keytab(For kerberos keytab)
+
+##For kerberos cache
+*.cc5
+*.keytab
+
 # lock file, a part of Oracle Credential Store Framework
 cwallet.sso.lck
 .idea/*
