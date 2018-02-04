@@ -52,6 +52,7 @@ object Kinit extends KerberosLogger {
     }
 
     val opt: KDCOptions = new KDCOptions();
+
     setOptions(KDCOptions.RENEW, options.renewable, opt)
     setOptions(KDCOptions.FORWARDABLE, options.forwardable, opt);
     setOptions(KDCOptions.PROXIABLE, options.proxiable, opt);

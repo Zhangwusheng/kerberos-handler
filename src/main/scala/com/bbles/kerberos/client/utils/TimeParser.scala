@@ -2,6 +2,7 @@ package com.bbles.kerberos.client.utils
 
 import java.util.Date
 
+import sun.security.krb5.Config
 import sun.security.krb5.internal.KerberosTime
 
 case class TimeParser(time: String) {
@@ -45,4 +46,5 @@ case class TimeParser(time: String) {
     * @return
     */
   def toKerberosTime: KerberosTime = new KerberosTime(toTimeStamp)
+  Config
 }
